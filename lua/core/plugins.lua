@@ -40,6 +40,7 @@ local plugins = {
   'romgrk/barbar.nvim',
   'kdheepak/lazygit.nvim',
   'MunifTanjim/nui.nvim',
+  'petertriho/nvim-scrollbar',
 
   {
     "L3MON4D3/LuaSnip",
@@ -50,11 +51,9 @@ local plugins = {
   },
 
   { 'VonHeikemen/fine-cmdline.nvim',
-        requires = {
-            {
-                'MunifTanjim/nui.nvim'
-            }
-        }
+    dependencies = {
+      { 'MunifTanjim/nui.nvim' },
+    },
   },
 
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},

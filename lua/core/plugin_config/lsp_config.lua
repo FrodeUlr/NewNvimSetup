@@ -12,7 +12,6 @@ require("mason-lspconfig").setup({
     "pyright",
     "rust_analyzer",
     "yamlls",
-    "csharp_ls",
     "dockerls",
     "gopls",
     "ruff_lsp"
@@ -77,7 +76,6 @@ require("lspconfig").yamlls.setup { capabilities = capabilities }
 require("lspconfig").csharp_ls.setup { capabilities = capabilities }
 require("lspconfig").gopls.setup { capabilities = capabilities }
 require("lspconfig").ruff_lsp.setup { capabilities = capabilities }
-
 
 -- After setting up mason-lspconfig you may set up servers via lspconfig
 -- require("lspconfig").lua_ls.setup {}
