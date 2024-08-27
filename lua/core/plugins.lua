@@ -41,6 +41,7 @@ local plugins = {
   'kdheepak/lazygit.nvim',
   'MunifTanjim/nui.nvim',
   'petertriho/nvim-scrollbar',
+  'github/copilot.vim',
 
   {
     "L3MON4D3/LuaSnip",

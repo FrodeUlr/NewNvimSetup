@@ -85,3 +85,9 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 -- FineCmd
 vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
 
+-- Copilot
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<S-TAB>", "copilot#Accept('<CR>')", { expr = true, silent = true })
+vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)", { noremap = false })
+vim.keymap.set("i", "<C-k>", "<Plug>(copilot-previous)", { noremap = false })
+
