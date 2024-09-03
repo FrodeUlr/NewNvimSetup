@@ -78,7 +78,7 @@ require("lspconfig").yamlls.setup { capabilities = capabilities }
 require("lspconfig").gopls.setup { capabilities = capabilities }
 require("lspconfig").ruff_lsp.setup { capabilities = capabilities }
 require("lspconfig").omnisharp.setup { capabilities = capabilities,
-  cmd = { "dotnet", "C:/Users/frode/AppData/Local/nvim-data/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+  cmd = { "dotnet", vim.fn.stdpath "data" .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
   -- Enables support for reading code style, naming convention and analyzer
   -- settings from .editorconfig.
   enable_editorconfig_support = true,
