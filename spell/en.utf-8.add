@@ -60,3 +60,15 @@ zCBOR
 submodule
 timestamp
 MQTT_Sensors/!
+auth
+PetrelObject
+npm
+Cegal
+Prizm
+pyenvs
+OpenCL
+PyKeystoneAuth
+OAuth
+TestEnv/!
+TestEnv
+Lability
