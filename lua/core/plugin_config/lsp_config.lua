@@ -14,7 +14,7 @@ require("mason-lspconfig").setup({
     "yamlls",
     "dockerls",
     "gopls",
-    "ruff_lsp",
+    "ruff",
     "omnisharp"
   }
 })
@@ -71,12 +71,14 @@ require("lspconfig").lua_ls.setup {
   },
   capabilities = capabilities
 }
-require("lspconfig").marksman.setup { capabilities = capabilities }
+require("lspconfig").marksman.setup { capabilities = capabilities,
+  cmd = { "D:/lsp/marksman", "server" }
+}
 require("lspconfig").pyright.setup { capabilities = capabilities }
 require("lspconfig").yamlls.setup { capabilities = capabilities }
 -- require("lspconfig").csharp_ls.setup { capabilities = capabilities }
 require("lspconfig").gopls.setup { capabilities = capabilities }
-require("lspconfig").ruff_lsp.setup { capabilities = capabilities }
+require("lspconfig").ruff.setup { capabilities = capabilities }
 require("lspconfig").omnisharp.setup { capabilities = capabilities,
   cmd = { "dotnet", vim.fn.stdpath "data" .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
   -- Enables support for reading code style, naming convention and analyzer
