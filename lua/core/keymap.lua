@@ -1,27 +1,28 @@
+-- General Mappings
 vim.keymap.set('i', 'kj', '<Esc>', { desc = "Use 'kj' keys in quick succession for ESC" })
 
--- remap pane navigation
-vim.keymap.set('n', '<C-j>', '<CMD>NavigatorDown<CR>', { desc = "Move to down pane" })
-vim.keymap.set('n', '<C-k>', '<CMD>NavigatorUp<CR>', { desc = "Move to up pane" })
-vim.keymap.set('n', '<C-h>', '<CMD>NavigatorLeft<CR>', { desc = "Move to left pane" })
-vim.keymap.set('n', '<C-l>', '<CMD>NavigatorRight<CR>', { desc = "Move to right pane" })
+-- Pane Navigation (Using built-in window commands for consistency)
+vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { desc = "Move to down pane" })
+vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { desc = "Move to up pane" })
+vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { desc = "Move to left pane" })
+vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { desc = "Move to right pane" })
 
 -- Paste without overwriting register
 vim.keymap.set("v", "p", '"_dP', { desc = "Paste without overwriting register"})
 
--- Copy text to " register
+-- Yank/Copy to Clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", "\"+y", { desc = "Yank into \" register" })
 vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "Yank into \" register" })
 
--- Delete text to " register
-vim.keymap.set("n", "<leader>d", "\"_d", { desc = "Delete into \" register" })
-vim.keymap.set("v", "<leader>d", "\"_d", { desc = "Delete into \" register" })
+-- Delete to Black Hole Register
+vim.keymap.set("n", "<leader>D", "\"_d", { desc = "Delete into \" register" })
+vim.keymap.set("v", "<leader>D", "\"_d", { desc = "Delete into \" register" })
 
--- Move lines up or down when in visual mode
+-- Move Lines Up/Down in Visual Mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Keep window centered when going up/down
+-- Keep Window Centered While Scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-f>", "<C-f>zz")
@@ -29,45 +30,38 @@ vim.keymap.set("n", "<C-b>", "<C-b>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- Clear Search Highlighting
 vim.keymap.set("n", "<space><space>", "<cmd> :noh<CR>", { desc = "Clear search highlighting" })
 
-vim.keymap.set("n", "<leader>t", function()
-   vim.cmd("cd %:p:h")
-   vim.cmd("belowright split | terminal")
-   vim.cmd("startinsert")
-end, { desc = "Open terminal in folder of current file"})
+-- Open Terminal in Current File's Directory
+vim.keymap.set("n", "<leader>t", ":belowright split | terminal | startinsert | cd %:p:h<CR>", { desc = "Open terminal in folder of current file"})
 
--- Find and replace visual selection using CTRL-r
+-- Find and Replace Visual Selection Using CTRL-r
 vim.keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//gc<left><left><left>")
 
-local map = vim.api.nvim_set_keymap
+-- Buffer Navigation and Management
 local opts = { noremap = true, silent = true }
--- Move to previous/next
-map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
--- Re-order to previous/next
-map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
--- Goto buffer in position...
-map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
-map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
--- Pin/unpin buffer
-map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
--- Close buffer
-map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
 
+-- Goto Buffer in Position
+for i = 1, 9 do
+    vim.api.nvim_set_keymap('n', '<A-' .. i .. '>', '<Cmd>BufferGoto ' .. i .. '<CR>', opts)
+end
+vim.api.nvim_set_keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+
+-- Pin/Unpin Buffer & Close Buffer
+vim.api.nvim_set_keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+
+-- LazyGit Integration
 vim.api.nvim_set_keymap('n', '<Leader>gg', ':LazyGit<CR>', { noremap = true, silent = true })
 
--- Toggle terminal mappings
+-- Terminal Keymaps
 vim.api.nvim_set_keymap('n', '<Leader>tt', ':ToggleTerm<CR>', { noremap = true, silent = true })
+
 function _G.set_terminal_keymaps()
     local opts2 = { buffer = 0 }
     vim.keymap.set('t', '<C-q>', [[<C-\><C-n>]], opts2)
@@ -79,15 +73,33 @@ function _G.set_terminal_keymaps()
     vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts2)
 end
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
--- FineCmd
+-- FineCmd Integration
 vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
 
--- Copilot
+-- Copilot Integration
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-f>", "copilot#Accept('<CR>')", { expr = true, silent = true })
 vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)", { noremap = false })
-vim.keymap.set("i", "<C-k>", "<Plug>(copilot-previous)", { noremap = false })
+
+-- DAP (Debug Adapter Protocol) Mappings
+vim.keymap.set('n', '<leader>dB', function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { desc = "Breakpoint Condition" })
+vim.keymap.set('n', '<leader>db', function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+vim.keymap.set('n', '<leader>dc', function() require("dap").continue() end, { desc = "Run/Continue" })
+vim.keymap.set('n', '<leader>da', function() require("dap").continue({ before = get_args }) end, { desc = "Run with Args" })
+vim.keymap.set('n', '<leader>dC', function() require("dap").run_to_cursor() end, { desc = "Run to Cursor" })
+vim.keymap.set('n', '<leader>dg', function() require("dap").goto_() end, { desc = "Go to Line (No Execute)" })
+vim.keymap.set('n', '<leader>di', function() require("dap").step_into() end, { desc = "Step Into" })
+vim.keymap.set('n', '<leader>dj', function() require("dap").down() end, { desc = "Down" })
+vim.keymap.set('n', '<leader>dk', function() require("dap").up() end, { desc = "Up" })
+vim.keymap.set('n', '<leader>dl', function() require("dap").run_last() end, { desc = "Run Last" })
+vim.keymap.set('n', '<leader>do', function() require("dap").step_out() end, { desc = "Step Out" })
+vim.keymap.set('n', '<leader>dO', function() require("dap").step_over() end, { desc = "Step Over" })
+vim.keymap.set('n', '<leader>dP', function() require("dap").pause() end, { desc = "Pause" })
+vim.keymap.set('n', '<leader>dr', function() require("dap").repl.toggle() end, { desc = "Toggle REPL" })
+vim.keymap.set('n', '<leader>ds', function() require("dap").session() end, { desc = "Session" })
+vim.keymap.set('n', '<leader>dt', function() require("dap").terminate() end, { desc = "Terminate" })
+vim.keymap.set('n', '<leader>dw', function() require("dap.ui.widgets").hover() end, { desc = "Widgets" })
+
 
