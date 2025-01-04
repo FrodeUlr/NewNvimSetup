@@ -1,20 +1,18 @@
 local dap = require('dap')
-if vim.fn.has('win32') == 1 then
-  dap.adapters.cppdbg = {
+
+local is_windows = vim.loop.os_uname().version:match('Windows')
+local debugger_path = is_windows
+  and vim.fn.expand('$localappdata') .. '/nvim-data/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7.exe'
+  or vim.fn.expand('~/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7')
+
+dap.adapters.cppdbg = {
     type = 'executable',
-    command = 'C:/Users/frode/AppData/Local/nvim-data/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7.exe',
+    command = debugger_path,
     name = 'cppdbg',
     options = {
       detached = false,
     },
-  }
-else
-  dap.adapters.lldb = {
-    type = 'executable',
-    command = '/usr/bin/lldb-vscode',
-    name = 'lldb'
-  }
-end
+ }
 
 dap.configurations.cpp = {
   {
