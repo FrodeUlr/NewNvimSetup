@@ -1,5 +1,6 @@
 local dap = require('dap')
 
+-- Set up the dap adapter for cpp
 local is_windows = vim.loop.os_uname().version:match('Windows')
 local debugger_path = is_windows
   and vim.fn.expand('$localappdata') .. '/nvim-data/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7.exe'

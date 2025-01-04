@@ -1,5 +1,7 @@
 require("mason").setup()
 require("mason-nvim-dap").setup()
+
+-- LSP Configuration
 require("mason-lspconfig").setup({
   ensure_installed = {
     "bashls",
@@ -17,8 +19,32 @@ require("mason-lspconfig").setup({
     "gopls",
     "ruff",
     "omnisharp"
-  }
+  },
+  automatic_installation = true,
 })
+
+-- DAP Configuration
+require("mason-nvim-dap").setup({
+  ensure_installed = {
+    "debugpy",                     -- Python debug adapter
+    "codelldb",                    -- CPP, C, Rust, etc
+    "delve",                       -- Go
+    "go-debug-adapter",            -- Go
+    "netcoredbg",                  -- C#
+    "node-debug2",                 -- Node.js
+  },
+  automatic_installation = true,   -- Automatically install configured DAPs
+})
+
+-- Formatter Configuration
+-- require("mason-null-ls").setup({
+--    ensure_installed = {
+--        "prettier",   -- Example: JavaScript/TypeScript/HTML formatter
+--        "eslint_d",   -- Example: JavaScript/TypeScript linter
+--        "black",      -- Example: Python formatter
+--    },
+--    automatic_installation = true, -- Automatically install configured tools
+--})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -41,7 +67,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { buffer = ev.buf, desc = "Show diagnostics in float" })
     vim.keymap.set('n', 'gK', vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "Show signature help" })
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { buffer = ev.buf, desc = "Add workspace folder" })
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "Remove workspace folder" })
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+      { buffer = ev.buf, desc = "Remove workspace folder" })
     vim.keymap.set('n', '<space>wl', function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, { buffer = ev.buf, desc = "List workspace folders" })
