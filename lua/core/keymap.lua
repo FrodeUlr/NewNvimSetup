@@ -102,4 +102,9 @@ vim.keymap.set('n', '<leader>ds', function() require("dap").session() end, { des
 vim.keymap.set('n', '<leader>dt', function() require("dap").terminate() end, { desc = "Terminate" })
 vim.keymap.set('n', '<leader>dw', function() require("dap.ui.widgets").hover() end, { desc = "Widgets" })
 
-
+local keymap = vim.api.nvim_set_keymap
+-- Save breakpoints to file automatically.
+keymap("n", "<leader>dbt", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>", {desc = "Toggle breakpoint"})
+keymap("n", "<leader>dbs", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", {desc = "Set conditional breakpoint"})
+keymap("n", "<leader>dbc", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", {desc = "Clear all breakpoints"})
+keymap("n", "<leader>dbl", "<cmd>lua require('persistent-breakpoints.api').set_log_point()<cr>", {desc = "Set log point"})

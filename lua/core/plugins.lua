@@ -43,6 +43,7 @@ local plugins = {
   'petertriho/nvim-scrollbar',
   'github/copilot.vim',
   'nvim-neotest/nvim-nio',
+  'Weissle/persistent-breakpoints.nvim',
   'mfussenegger/nvim-dap',
   {
     "theHamsta/nvim-dap-virtual-text",

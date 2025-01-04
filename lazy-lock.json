@@ -40,6 +40,7 @@
   "nvim-tree.lua": { "branch": "master", "commit": "68fc4c20f5803444277022c681785c5edd11916d" },
   "nvim-treesitter": { "branch": "master", "commit": "4b222913486ec0a5983efa82b0649a2ab87cf1f0" },
   "nvim-web-devicons": { "branch": "master", "commit": "4adeeaa7a32d46cf3b5833341358c797304f950a" },
+  "persistent-breakpoints.nvim": { "branch": "main", "commit": "4b199b1dcfd136cac8b0fa9c8dbbdeb81463f7a9" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "render-markdown.nvim": { "branch": "main", "commit": "6fbd1491abc104409f119685de5353c35c97c005" },
   "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" },
