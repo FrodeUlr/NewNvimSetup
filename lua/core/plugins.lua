@@ -45,6 +45,7 @@ local plugins = {
   'nvim-neotest/nvim-nio',
   'Weissle/persistent-breakpoints.nvim',
   'mfussenegger/nvim-dap',
+  'leoluz/nvim-dap-go',
   {
     "theHamsta/nvim-dap-virtual-text",
     opts = {},
