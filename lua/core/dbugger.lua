@@ -62,6 +62,7 @@ dap.configurations.rust = {
         type = "codelldb", -- Matches the adapter name
         request = "launch",
         program = function()
+            vim.fn.jobstart({"cargo", "build"}, { cwd = vim.fn.getcwd() })
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
         end,
         cwd = "${workspaceFolder}",
