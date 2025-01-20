@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   'Mofiqul/adwaita.nvim',
+  'navarasu/onedark.nvim',
   'ellisonleao/gruvbox.nvim',
   'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',

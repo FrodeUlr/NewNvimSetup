@@ -99,8 +99,15 @@ require("lspconfig").lua_ls.setup {
   },
   capabilities = capabilities
 }
-require("lspconfig").marksman.setup { capabilities = capabilities,
-  cmd = { "D:/lsp/marksman", "server" }
+local marksman_cmd
+if vim.fn.has('win32') == 1 then
+  marksman_cmd = { "D:/lsp/marksman.exe", "server" }
+else
+  marksman_cmd = { vim.fn.stdpath("data") .. "/mason/packages/marksman/marksman-linux-x64", "server" }
+end
+require("lspconfig").marksman.setup {
+  capabilities = capabilities,
+  cmd = marksman_cmd
 }
 require("lspconfig").pyright.setup { capabilities = capabilities }
 require("lspconfig").yamlls.setup { capabilities = capabilities }
