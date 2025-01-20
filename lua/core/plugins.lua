@@ -47,6 +47,7 @@ local plugins = {
   'Weissle/persistent-breakpoints.nvim',
   'mfussenegger/nvim-dap',
   'leoluz/nvim-dap-go',
+  'hiphish/rainbow-delimiters.nvim',
   {
     "theHamsta/nvim-dap-virtual-text",
     opts = {},

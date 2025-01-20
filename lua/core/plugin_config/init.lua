@@ -14,6 +14,7 @@ require("core.plugin_config.nvim-tree")
 require("core.plugin_config.rust_config")
 require("core.plugin_config.telescope")
 require("core.plugin_config.treesitter")
+require("core.plugin_config.rainbow_delimiters")
 
 -- themes
 -- require("core.plugin_config.gruvbox")
