@@ -108,3 +108,4 @@ keymap("n", "<leader>dbt", "<cmd>lua require('persistent-breakpoints.api').toggl
 keymap("n", "<leader>dbs", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", {desc = "Set conditional breakpoint"})
 keymap("n", "<leader>dbc", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", {desc = "Clear all breakpoints"})
 keymap("n", "<leader>dbl", "<cmd>lua require('persistent-breakpoints.api').set_log_point()<cr>", {desc = "Set log point"})
+
