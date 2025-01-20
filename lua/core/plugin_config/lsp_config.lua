@@ -141,5 +141,5 @@ require("lspconfig").omnisharp.setup { capabilities = capabilities,
 
 -- After setting up mason-lspconfig you may set up servers via lspconfig
 -- require("lspconfig").lua_ls.setup {}
--- require("lspconfig").rust_analyzer.setup {}
--- ...
+require("lspconfig").rust_analyzer.setup { capabilities = capabilities }
+

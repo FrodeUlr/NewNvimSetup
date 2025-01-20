@@ -49,3 +49,13 @@ if vim.fn.has('win32') == 1 then
     vim.opt.shellquote = "\""
     vim.opt.shellxquote = ""
 end
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '',
+    spacing = 2,
+  },
+  underline = true,
+  signs = true,
+  update_in_insert = false,
+})
