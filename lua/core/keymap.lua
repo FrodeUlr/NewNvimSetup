@@ -48,7 +48,7 @@ vim.api.nvim_set_keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
 
 -- Goto Buffer in Position
 for i = 1, 9 do
-    vim.api.nvim_set_keymap('n', '<A-' .. i .. '>', '<Cmd>BufferGoto ' .. i .. '<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<C-' .. i .. '>', '<Cmd>BufferGoto ' .. i .. '<CR>', opts)
 end
 vim.api.nvim_set_keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 
