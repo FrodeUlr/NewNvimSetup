@@ -78,9 +78,18 @@ local python_debugger_path = is_windows
   and vim.fn.expand('$localappdata') .. '/nvim-data/mason/packages/debugpy/venv/Scripts/python.exe'
   or vim.fn.expand('~/.local/share/nvim/mason/packages/debugpy/venv/bin/python')
 
+local get_python_path = function()
+  local venv_path = os.getenv('VIRTUAL_ENV')
+  if venv_path then
+    return is_windows and venv_path .. '\\Scripts\\python.exe' or venv_path .. '/bin/python'
+  end
+  return is_windows and vim.fn.expand('$localappdata') .. '/nvim-data/mason/packages/debugpy/venv/Scripts/python.exe'
+    or vim.fn.expand('~/.local/share/nvim/mason/packages/debugpy/venv/bin/python')
+end
+
 dap.adapters.python = {
   type = 'executable',
-  command = python_debugger_path,
+  command = get_python_path(),
   args = { '-m', 'debugpy.adapter' },
 }
 
@@ -90,10 +99,8 @@ dap.configurations.python = {
     request = 'launch',
     name = 'Launch file',
     program = "${file}",
-    pythonPath = function()
-      return python_debugger_path
-    end,
-  },
+    pythonPath = get_python_path,
+  }
 }
 
 require('persistent-breakpoints').setup{
