@@ -69,6 +69,21 @@ dap.configurations.rust = {
         stopOnEntry = false,
         args = {}, -- Additional arguments to pass to the program
     },
+    {
+      name = "Launch with arguments",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+          vim.fn.jobstart({"cargo", "build"}, { cwd = vim.fn.getcwd() })
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+      end,
+      cwd = "${workspaceFolder}",
+      stopOnEntry = false,
+      args = function()
+          local user_inputs = vim.fn.input("Enter agruments:")
+          return vim.split(user_inputs, " ")
+      end,
+    }
 }
 
 
