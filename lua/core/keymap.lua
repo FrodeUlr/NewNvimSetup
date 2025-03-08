@@ -108,10 +108,44 @@ vim.keymap.set('n', '<leader>ds', function() require("dap").session() end, { des
 vim.keymap.set('n', '<leader>dt', function() require("dap").terminate() end, { desc = "Terminate" })
 vim.keymap.set('n', '<leader>dw', function() require("dap.ui.widgets").hover() end, { desc = "Widgets" })
 
+-- DAP UI Mappings
+vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { desc = "DAP UI" })
+vim.keymap.set({'n', 'v'}, '<leader>de', function() require("dapui").eval() end, { desc = "Eval" })
+
+-- Minimap Mappings
+-- Global Minimap Controls
+vim.keymap.set("n", "<leader>nm", "<cmd>Neominimap toggle<cr>", { desc = "Toggle global minimap" })
+vim.keymap.set("n", "<leader>no", "<cmd>Neominimap on<cr>", { desc = "Enable global minimap" })
+vim.keymap.set("n", "<leader>nc", "<cmd>Neominimap off<cr>", { desc = "Disable global minimap" })
+vim.keymap.set("n", "<leader>nr", "<cmd>Neominimap refresh<cr>", { desc = "Refresh global minimap" })
+
+-- Window-Specific Minimap Controls
+vim.keymap.set("n", "<leader>nwt", "<cmd>Neominimap winToggle<cr>", { desc = "Toggle minimap for current window" })
+vim.keymap.set("n", "<leader>nwr", "<cmd>Neominimap winRefresh<cr>", { desc = "Refresh minimap for current window" })
+vim.keymap.set("n", "<leader>nwo", "<cmd>Neominimap winOn<cr>", { desc = "Enable minimap for current window" })
+vim.keymap.set("n", "<leader>nwc", "<cmd>Neominimap winOff<cr>", { desc = "Disable minimap for current window" })
+
+-- Tab-Specific Minimap Controls
+vim.keymap.set("n", "<leader>ntt", "<cmd>Neominimap tabToggle<cr>", { desc = "Toggle minimap for current tab" })
+vim.keymap.set("n", "<leader>ntr", "<cmd>Neominimap tabRefresh<cr>", { desc = "Refresh minimap for current tab" })
+vim.keymap.set("n", "<leader>nto", "<cmd>Neominimap tabOn<cr>", { desc = "Enable minimap for current tab" })
+vim.keymap.set("n", "<leader>ntc", "<cmd>Neominimap tabOff<cr>", { desc = "Disable minimap for current tab" })
+
+-- Buffer-Specific Minimap Controls
+vim.keymap.set("n", "<leader>nbt", "<cmd>Neominimap bufToggle<cr>", { desc = "Toggle minimap for current buffer" })
+vim.keymap.set("n", "<leader>nbr", "<cmd>Neominimap bufRefresh<cr>", { desc = "Refresh minimap for current buffer" })
+vim.keymap.set("n", "<leader>nbo", "<cmd>Neominimap bufOn<cr>", { desc = "Enable minimap for current buffer" })
+vim.keymap.set("n", "<leader>nbc", "<cmd>Neominimap bufOff<cr>", { desc = "Disable minimap for current buffer" })
+
+-- Focus Controls
+vim.keymap.set("n", "<leader>nf", "<cmd>Neominimap focus<cr>", { desc = "Focus on minimap" })
+vim.keymap.set("n", "<leader>nu", "<cmd>Neominimap unfocus<cr>", { desc = "Unfocus minimap" })
+vim.keymap.set("n", "<leader>ns", "<cmd>Neominimap toggleFocus<cr>", { desc = "Switch focus on minimap" })
+
+
 local keymap = vim.api.nvim_set_keymap
 -- Save breakpoints to file automatically.
 keymap("n", "<leader>dbt", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>", {desc = "Toggle breakpoint"})
 keymap("n", "<leader>dbs", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", {desc = "Set conditional breakpoint"})
 keymap("n", "<leader>dbc", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", {desc = "Clear all breakpoints"})
 keymap("n", "<leader>dbl", "<cmd>lua require('persistent-breakpoints.api').set_log_point()<cr>", {desc = "Set log point"})
-

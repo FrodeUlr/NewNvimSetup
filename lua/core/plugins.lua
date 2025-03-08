@@ -48,6 +48,7 @@ local plugins = {
   'Weissle/persistent-breakpoints.nvim',
   'mfussenegger/nvim-dap',
   'leoluz/nvim-dap-go',
+  'pocco81/auto-save.nvim',
   {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -94,10 +95,6 @@ local plugins = {
     "rcarriga/nvim-dap-ui",
     dependencies = { "nvim-neotest/nvim-nio" },
     -- stylua: ignore
-    keys = {
-      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-      { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-    },
     opts = {},
     config = function(_, opts)
       local dap = require("dap")
@@ -137,7 +134,10 @@ local plugins = {
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
+        "cppdbg",
+        "codelldb",
+        "delve",
+        "python"
       },
     },
     -- mason-nvim-dap is loaded when nvim-dap loads
@@ -145,9 +145,6 @@ local plugins = {
   },
   {
     "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    --version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
     build = "make install_jsregexp"
   },
 
@@ -163,8 +160,6 @@ local plugins = {
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {},
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
 
   {
@@ -188,11 +183,7 @@ local plugins = {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
+    opts = {}
   },
 
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
@@ -202,9 +193,6 @@ local plugins = {
         vim.o.timeoutlen = 300
         require("which-key").setup {
             auto = true,
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
         }
      end
   },
@@ -217,6 +205,24 @@ local plugins = {
         size = 20
       })
     end
+  },
+  {
+    "Isrothy/neominimap.nvim",
+    version = "v3.*.*",
+    enabled = true,
+    lazy = false, -- NOTE: NO NEED to Lazy load
+    -- Optional
+    init = function()
+        -- The following options are recommended when layout == "float"
+        vim.opt.wrap = false
+        vim.opt.sidescrolloff = 36 -- Set a large value
+
+        --- Put your configuration here
+        ---@type Neominimap.UserConfig
+        vim.g.neominimap = {
+            auto_enable = true,
+        }
+    end,
   },
 }
 
