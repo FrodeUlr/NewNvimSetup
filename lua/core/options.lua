@@ -26,7 +26,7 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 
 -- Color the colum to the right of the limit
-vim.opt.colorcolumn = "+1"
+vim.opt.colorcolumn = ""
 
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.md", "*.mdx", "*.rst", "*/COMMIT_EDITMSG"},
