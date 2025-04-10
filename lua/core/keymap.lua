@@ -23,50 +23,46 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Keep Window Centered While Scrolling
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-f>", "<C-f>zz")
-vim.keymap.set("n", "<C-b>", "<C-b>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+vim.keymap.set("n", "<C-f>", "<C-f>zz", { desc = "Scroll down and center" })
+vim.keymap.set("n", "<C-b>", "<C-b>zz", { desc = "Scroll up and center" })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Find next and center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Find previous and center" })
 
 -- Clear Search Highlighting
 vim.keymap.set("n", "<space><space>", "<cmd> :noh<CR>", { desc = "Clear search highlighting" })
 
--- Open Terminal in Current File's Directory
-vim.keymap.set("n", "<leader>t", ":belowright split | terminal | startinsert | cd %:p:h<CR>", { desc = "Open terminal in folder of current file"})
-
 -- Find and Replace Visual Selection Using CTRL-r
-vim.keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//gc<left><left><left>")
+vim.keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//gc<left><left><left>", { desc = "Find and replace visual selection" })
 
 -- Buffer Navigation and Management
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-vim.api.nvim_set_keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-vim.api.nvim_set_keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-vim.api.nvim_set_keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', { noremap = true, silent = true, desc = "Previous Buffer" })
+vim.api.nvim_set_keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', { noremap = true, silent = true, desc = "Next Buffer" })
+vim.api.nvim_set_keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', { noremap = true, silent = true, desc = "Move Buffer Left" })
+vim.api.nvim_set_keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', { noremap = true, silent = true, desc = "Move Buffer Right" })
 
 -- Goto Buffer in Position
 --if vim.fn.has('win32') == 1 then
 for i = 1, 9 do
-  vim.api.nvim_set_keymap('n', '<M-' .. i .. '>', '<Cmd>BufferGoto ' .. i .. '<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<M-' .. i .. '>', '<Cmd>BufferGoto ' .. i .. '<CR>', { noremap = true, silent = true, desc = "Goto Buffer " .. i })
 end
 --else
 --  for i = 1, 9 do
 --    vim.api.nvim_set_keymap('n', '<C-' .. i .. '>', '<Cmd>BufferGoto ' .. i .. '<CR>', opts)
 --  end
 --end
-vim.api.nvim_set_keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', { noremap = true, silent = true, desc = "Goto Last Buffer" })
 
 -- Pin/Unpin Buffer & Close Buffer
-vim.api.nvim_set_keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
-vim.api.nvim_set_keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', { noremap = true, silent = true, desc = "Pin/Unpin Buffer" })
+vim.api.nvim_set_keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', { noremap = true, silent = true, desc = "Close Buffer" })
 
 -- LazyGit Integration
-vim.api.nvim_set_keymap('n', '<Leader>gg', ':LazyGit<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gg', ':LazyGit<CR>', { noremap = true, silent = true, desc = "Open LazyGit" })
 
 -- Terminal Keymaps
-vim.api.nvim_set_keymap('n', '<Leader>tt', ':ToggleTerm<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>tt', ':ToggleTerm<CR>', { noremap = true, silent = true, desc = "Toggle Terminal" })
 
 function _G.set_terminal_keymaps()
     local opts2 = { buffer = 0 }
