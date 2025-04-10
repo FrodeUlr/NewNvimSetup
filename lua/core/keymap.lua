@@ -64,7 +64,7 @@ vim.api.nvim_set_keymap('n', '<Leader>gg', ':LazyGit<CR>', { noremap = true, sil
 -- Terminal Keymaps
 vim.api.nvim_set_keymap('n', '<Leader>tt', ':ToggleTerm<CR>', { noremap = true, silent = true, desc = "Toggle Terminal" })
 
-function _G.set_terminal_keymaps()
+function _G.set_terminal_keymap()
     local opts2 = { buffer = 0 }
     vim.keymap.set('t', '<C-q>', [[<C-\><C-n>]], opts2)
     vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts2)
@@ -75,7 +75,7 @@ function _G.set_terminal_keymaps()
     vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts2)
 end
 
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymap()')
 
 -- FineCmd Integration
 vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
