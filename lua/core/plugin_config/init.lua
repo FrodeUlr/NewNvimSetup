@@ -17,8 +17,4 @@ require("core.plugin_config.treesitter")
 require("core.plugin_config.rainbow_delimiters")
 
 -- themes
--- require("core.plugin_config.gruvbox")
--- require("core.plugin_config.rose-pine")
--- require("core.plugin_config.codedark")
--- require("core.plugin_config.adwaita")
-require("core.plugin_config.onedark")
+require("core.plugin_config.themes")

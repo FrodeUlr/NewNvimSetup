@@ -12,7 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'Mofiqul/adwaita.nvim',
   'navarasu/onedark.nvim',
   'ellisonleao/gruvbox.nvim',
   'nvim-tree/nvim-tree.lua',
@@ -26,10 +25,6 @@ local plugins = {
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-buffer',
   'lewis6991/gitsigns.nvim',
-  'rose-pine/neovim',
-  'tomasiser/vim-code-dark',
-  'folke/tokyonight.nvim',
-  'rebelot/kanagawa.nvim',
   'preservim/nerdcommenter',
   'whiteinge/diffconflicts',
   'simrat39/rust-tools.nvim',
