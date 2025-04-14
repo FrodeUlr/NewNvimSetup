@@ -35,6 +35,20 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   end
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "NvimTree_*",
+  callback = function()
+    require('neominimap').off()
+  end
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+  pattern = "NvimTree_*",
+  callback = function()
+    require('neominimap').on()
+  end
+})
+
 -- show trailing whitespace
 vim.opt.list = true
 vim.opt.listchars = { tab = '╞ ',
